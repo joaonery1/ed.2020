@@ -1,54 +1,31 @@
 #include <stdio.h>
-#include <string.h>
-#include <math.h>
 #include <stdlib.h>
-#include<stdbool.h>
-#include <ctype.h>
-#include <stdio.h>
 #include <string.h>
-#include <strings.h>
+int main(void)
+{
 
-//void veriChar(char c){
-  //  int k = 0;
-  //  int *p_k = &k;
+  char texto[50];      //char para armazenar o texto/frase escrita pelo usuario
+  int cout = 0;        //variiavel de contagem com inicio 0
+  char letra[]= "aA" ; //array para armazenar as letras que queremos ler
 
-  //  int count =0
-    //int *p_count = &count;
-    
-    //char letra = "a";
-    //char *p_letra = &letra;
+  gets(texto); //leitura de string
 
-    //*p_k = *p_i;
-
-    //for (*p_i = 0; i < strlen(c); i++)
-    //{
-   //     if (*p_letra == c)
-    //    {
-            /* code */
-      //  }
-        
-    //}
-    
-
-
-
-//}
-
-
-
-
-int main (void){
-    char texto[20];
-    scanf("%s" ,texto);
-    int count = 0;
-    if (strcasecmp(texto,"a")==0)
+  for (int i = 0; i < strlen(texto); i++)  //loop para fazer contar as letras
+  {
+    for (int j = 0; j < strlen(letra); j++) //loop contagem 
     {
-        count = count +1;
+        if (texto[i]==letra[j])
+        {
+          cout++;         //variavel de contagem 
+        }
+        
     }
-
-    printf("%d",count);
     
+  }
+
+  printf("%d",cout); //saida
+  
 
 
-
+  
 }
