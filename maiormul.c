@@ -6,22 +6,17 @@
 
 int main (){
 
-    bool mult = false;
-    int i, m,n,saida,maximo,count;
-    scanf("%d", &m);
+    bool mult = false;              //booleana para agilizar a saida
+    int i, m,n,saida,maximo,count;  //entradas
+    scanf("%d", &m);  
     scanf("%d",&n);
     
-    if(m>n){
+    if(m>n){                    //caso o m for maior que o n fiz uma inversão
         count = n;
         n = m;
         m = count;
     }
-
-
-
-
-
-    for (i=m;i<=n;i++){
+    for (i=m;i<=n;i++){                          //laco para fazer a conta do mult
         if((m*i)<=n)
         {
             mult = true;
@@ -31,8 +26,8 @@ int main (){
         }
 
     }
-
-    if(mult==false){
+    //condiconal para a saida
+    if(mult==false || n == 1){
         printf("sem multiplos menores que %d",count);
     }else
     {
