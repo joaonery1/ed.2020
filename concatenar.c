@@ -196,7 +196,7 @@ bool concatenar(LISTA *l1, LISTA *l2)
     return true;
 
 }
-
+;
 /////////////////////////////////////////////////////////////////////
 
 int main()
