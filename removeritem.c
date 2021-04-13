@@ -159,8 +159,45 @@ void destruir(LISTA *l)
     l->tamanho = 0;
 }
 
-void lerItens(LISTA *l)
+/////////////////////////////////////////////////////////////////////
+
+// Objetivo: Remove o item contido na posicao pos.
+//           Caso seja possivel, retorna true. Caso contrario, retorna false.
+// Pre-condicao: 0 <= pos < tamanho
+bool removerDaPos(int pos, LISTA *l)
 {
+    if (pos < 0 || pos >l->tamanho-1)
+    {
+        return false;
+    }
+
+    if (0 <= pos < l->tamanho) //caso passe da condicao incial, fazemos
+    {
+        for (int i = 0; i < (l->tamanho - pos + 1); i++)
+        {
+            //o algoritmo que foi feito eh fazer a troca do elemnto da posicao que quer excluir,
+            //para a ultima posicao e assim diminuindo o tamanho da lista o elemento escolhido sera
+            //apagado
+            ITEM p;
+            ITEM pf;
+            p = l->itens[pos + i];
+            pf = l->itens[pos + i + 1];
+            l->itens[pos + i] = pf;
+            l->itens[pos + i + 1] = p;
+        }
+        l->tamanho--;
+        return true;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////
+
+int main()
+{
+    LISTA l;
+
+    inicializar(&l);
+
     int n;
     scanf("%d", &n);
 
@@ -170,59 +207,29 @@ void lerItens(LISTA *l)
     {
         scanf("%d", &item.chave);
         scanf("%s", item.valor);
-        inserir(item, l);
+        inserir(item, &l);
     }
-}
 
-//////////////////////////////////////////////////////////
+    printf("Tamanho = %d\n", tamanho(l));
 
-/*
-  Objetivo: Inserir todos os elementos da lista l2 na lista l1,
-            mantendo a sequencia de l2 em l1.
-            Quando a lista l1 nao tem capacidade suficiente para
-            comportar os elementos de da lista l2, a funcao
-            deve retornar false. Caso contrario, quando for
-            possivel concatenar, retorna true.
- */
-bool concatenar(LISTA *l1, LISTA *l2)
-{
-
-    for (int i = 0; i < l2->tamanho; i++)
-    {
-        ITEM aux;                  //armazena os dados da lista
-        aux = l2->itens[i];        //
-        inserir(aux, l1);      
-    }
-    return true;
-
-}
-;
-/////////////////////////////////////////////////////////////////////
-
-int main()
-{
-    LISTA l1, l2;
-
-    inicializar(&l1);
-    lerItens(&l1);
-
-    printf("Tamanho l1 = %d\n", tamanho(l1));
-    exibirLista(l1);
+    exibirLista(l);
     printf("\n");
 
-    inicializar(&l2);
-    lerItens(&l2);
-    printf("Tamanho l2 = %d\n", tamanho(l2));
-
-    exibirLista(l2);
-    printf("\n");
-
-    if (concatenar(&l1, &l2))
+    int pos;
+    scanf("%d", &pos);
+    while (pos != -1)
     {
-        printf("Resultado da concatenacao de l1 e l2:\n");
-        exibirLista(l1);
-        printf("\n");
+        if (removerDaPos(pos, &l))
+            printf("Removeu da posicao %d\n", pos);
+        else
+            printf("Nao removeu da posicao %d\n", pos);
+        scanf("%d", &pos);
     }
+
+    printf("Imprimindo a lista apos a remocao\n");
+    printf("Tamanho = %d\n", tamanho(l));
+    exibirLista(l);
+    printf("\n");
 
     return 0;
 }
