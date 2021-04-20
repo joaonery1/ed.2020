@@ -183,7 +183,10 @@ void lerItens(LISTA *l)
  */
 int removerDuplicados(LISTA *l)
 {
+
 	int x, y, z;
+	int tam = l->tamanho;
+
 	for (x = 0; x < l->tamanho; x++) //INCIO do laco iniciao
 	{
 		for (y = x + 1; y < l->tamanho;) //laco com a condicao de se for igual os valores entra em outro laco
@@ -194,15 +197,16 @@ int removerDuplicados(LISTA *l)
 				{								 //e ao sair do laco eu diminuo o tamanho, garantindo a ordem do laco
 					l->itens[z] = l->itens[z + 1];
 				}
-				l->tamanho--; //diminui o tamanho do laco
+				l->tamanho--;
 			}
 			else
 			{
 				y++; //caso nao ache, ele incrementa o j e isso vai mudando o laco do if
-				
 			}
 		}
 	}
+	return tam = tam - l->tamanho;
+	
 }
 
 /////////////////////////////////////////////////////////////////////
